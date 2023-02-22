@@ -1,4 +1,4 @@
-import { Typography, FormControlLabel, Checkbox, PropTypes } from "@mui/material";
+import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import "./VacationFilters.css";
 
 interface VacationFiltersProps {

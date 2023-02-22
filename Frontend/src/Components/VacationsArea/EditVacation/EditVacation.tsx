@@ -3,9 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
 import adminVacationsService from "../../../Services/AdminVacationsService";
-import appConfig from "../../../Utils/AppConfig";
 import notify from "../../../Utils/Notify";
-import Spinner from "../../SharedArea/Spinner/Spinner";
 import "./EditVacation.css";
 
 function EditVacation(): JSX.Element {

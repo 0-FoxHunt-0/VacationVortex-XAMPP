@@ -1,0 +1,23 @@
+html, body, #root {
+  margin: 0;
+  text-align: center;
+  height: 100%;
+  font-size: large;
+  background-image: linear-gradient(to bottom right, #1D2228, #363c44, #E1E2E2);
+  color: white;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.Box {
+  display: inline-block;
+  margin: 10px;
+}
+
+.MenuHr {
+  margin-top: 0;
+}
+
+.HeaderHr {
+  margin-bottom: 0;
+}

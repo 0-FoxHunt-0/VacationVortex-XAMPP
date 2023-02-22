@@ -1,0 +1,26 @@
+ .card {
+    max-width: 500;
+    min-width: 500;
+    min-height: 480;
+    max-height: 480;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    z-index: 0;
+    border: none;
+}
+
+.card::-webkit-scrollbar {
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+/* Hide scrollbar thumb */
+.card::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Show scrollbar thumb on hover */
+.card::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}

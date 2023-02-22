@@ -1,0 +1,25 @@
+.Login {
+	
+}
+
+.Login form {
+  border: 2px solid white;
+  border-radius: 5px;
+  width: 500px;
+  text-align: left;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.Login form > input, .Login form > button {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-size: x-large;
+}
+
+.Login form > label {
+  font-size: x-large;
+}

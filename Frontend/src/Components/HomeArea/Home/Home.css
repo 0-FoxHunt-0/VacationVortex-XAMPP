@@ -1,0 +1,16 @@
+.Home {
+    height: 25vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Home .HomeParagraph {
+	width: 75%;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}

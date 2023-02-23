@@ -29,7 +29,7 @@ function AddVacation(): JSX.Element {
             vacation.image = (vacation.image as unknown as FileList)[0]
             await adminVacationsService.addVacation(vacation);
             notify.success("Vacation has been added successfully!");
-            navigate(-1)
+            navigate("/list")
         }
         catch (err: any) { }
     }
@@ -39,7 +39,7 @@ function AddVacation(): JSX.Element {
 
             <h2>Add Vacation</h2>
 
-            <form className="" onSubmit={handleSubmit(send)}>
+            <form onSubmit={handleSubmit(send)}>
 
                 <label>Destination: </label>
                 <input type="text" {...register("destination", VacationModel.destinationValidation)} className="form-control" placeholder="Enter destination" />

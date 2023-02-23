@@ -17,7 +17,6 @@ function EditVacation(): JSX.Element {
     const params = useParams()
 
     const minDate = new Date();
-    const startDate = new Date()
 
     useEffect(() => {
         adminVacationsService.getVacationById(+params.id)

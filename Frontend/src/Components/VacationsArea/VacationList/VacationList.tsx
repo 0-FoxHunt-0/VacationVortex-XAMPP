@@ -69,14 +69,13 @@ function VacationList(): JSX.Element {
             if (!window.confirm('Are you sure you want to delete this vacation? \nThis action is irreversible!')) return;
 
             await adminVacationsService.deleteVacation(vacationId);
-            notify.success("Vacation has been deleted successfully")
-
+            notify.success("Vacation has been deleted successfully")            
+            
             // Refresh List:
             let duplicatedVacations = [...vacations];
             const index = duplicatedVacations.findIndex(v => v.vacationId === vacationId)
             duplicatedVacations.splice(index, 1);
-            setVacations(duplicatedVacations)
-
+            setVacations(duplicatedVacations)  
         } catch (err: any) {
             notify.error(err)
         }
@@ -189,7 +188,7 @@ function VacationList(): JSX.Element {
             {authService.isAdmin() &&
                 <Grid container>
                     {postArr.map(v =>
-                        <Grid item xs display="flex" justifyContent="center" alignItems="center" key={v.startDate}>
+                        <Grid item xs display="flex" justifyContent="center" alignItems="center" key={v.vacationId}>
                             <AdminVacationCard vacation={v} deleteVacation={deleteMe} />
                         </Grid>
                     )}

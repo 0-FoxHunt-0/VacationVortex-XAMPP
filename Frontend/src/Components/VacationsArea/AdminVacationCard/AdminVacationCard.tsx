@@ -37,7 +37,7 @@ function AdminVacationCard(props: VacationCardProps): JSX.Element {
                     </Button>
                 </NavLink>
 
-                <Button onClick={() => deleteMe()}>
+                <Button onClick={deleteMe}>
                     <Fab color="error" aria-label="add" size='medium'>
                         <DeleteIcon />
                     </Fab>

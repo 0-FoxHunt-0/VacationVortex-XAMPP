@@ -56,7 +56,7 @@ export function vacationsReducer(
 
     case VacationsActionType.DeleteVacation: // here the payload is the ID of the Vacation to delete
       const indexToDelete = newState.vacations.findIndex(
-        (v) => v.vacationId === action.payload.vacationId
+        (v) => v.vacationId === action.payload
       );
       if (indexToDelete !== -1) {
         newState.vacations.splice(indexToDelete, 1);

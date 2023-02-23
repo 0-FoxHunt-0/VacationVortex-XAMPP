@@ -63,7 +63,7 @@ class AdminVacationsService {
   }
 
   public async deleteVacation(id: number): Promise<void> {
-    await axios.delete<VacationModel>(appConfig.adminDeleteVacationUrl + id);
+    await axios.delete(appConfig.adminDeleteVacationUrl + id);
 
     vacationStore.dispatch({
       type: VacationsActionType.DeleteVacation,

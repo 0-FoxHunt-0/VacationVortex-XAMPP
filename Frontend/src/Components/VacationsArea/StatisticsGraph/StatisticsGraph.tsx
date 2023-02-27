@@ -1,9 +1,12 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 import VacationModel from '../../../Models/VacationModel';
 import { vacationStore } from '../../../Redux/VacationState';
 import adminVacationsService from '../../../Services/AdminVacationsService';
+import authService from '../../../Services/AuthServices';
+import notify from '../../../Utils/Notify';
 import "./StatisticsGraph.css";
 
 interface Vacation {
@@ -14,8 +17,16 @@ interface Vacation {
 function StatisticsGraph(): JSX.Element {
 
     const [vacations, setVacations] = useState<VacationModel[]>([])
+    const navigate = useNavigate()
 
     useEffect(() => {
+
+        if (!sessionStorage.getItem("userToken") || !authService.isAdmin()) {
+            notify.error("You are not logged in or authorized")
+            navigate("/")
+            return;
+        }
+
         setVacations(vacationStore.getState().vacations)
 
         if (vacations.length === 0) {

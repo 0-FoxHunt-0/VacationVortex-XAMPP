@@ -69,7 +69,7 @@ function UserVacationCard(props: VacationCardProps): JSX.Element {
                     alt={props.vacation.destination}
                     height="220"
                     image={props.vacation.imageName}
-                    sx={[{ position: "relative" }, { zIndex: 0 }, { top: 0 }]}
+                    sx={[{ position: "relative", zIndex: 0, top: 0, objectFit: "cover" }]}
                 />
                 <CardContent sx={{ height: "100%" }}>
                     <Typography variant="h5" component="div">

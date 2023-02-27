@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2023 at 01:11 AM
+-- Generation Time: Feb 27, 2023 at 03:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -39,7 +39,21 @@ CREATE TABLE `following` (
 --
 
 INSERT INTO `following` (`userId`, `vacationId`) VALUES
-(7, 9);
+(7, 9),
+(7, 11),
+(7, 13),
+(7, 14),
+(7, 16),
+(7, 17),
+(7, 19),
+(8, 9),
+(8, 11),
+(8, 12),
+(8, 13),
+(8, 14),
+(8, 15),
+(8, 17),
+(8, 18);
 
 -- --------------------------------------------------------
 
@@ -89,11 +103,11 @@ INSERT INTO `vacations` (`vacationId`, `destination`, `description`, `startDate`
 (9, 'Bali, Indonesia', 'Bali is a tropical paradise known for its lush jungles, vibrant culture, and pristine beaches. Explore the ancient temples, relax in a traditional Balinese spa, and experience the local cuisine.', '2023-03-10', '2023-03-17', '2500.00', 'ff9d1611-5bb5-476a-acd0-f1b6a765db8c.jpg'),
 (10, 'Venice, Italy', 'Venice is a charming city built on water, known for its historic canals, stunning architecture, and delicious food. Explore the iconic St. Mark\'s Square, take a gondola ride, and sample the local seafood.', '2023-07-20', '2023-07-27', '3000.00', 'fb6ecb6f-7fbd-4bd2-a508-12b82671fb37.jpg'),
 (11, 'Cancun, Mexico', 'Cancun is a lively resort town known for its pristine beaches, turquoise waters, and vibrant nightlife. Relax on the beach, snorkel in the coral reefs, and party the night away.', '2023-11-15', '2023-11-22', '1800.00', 'affa4194-09b8-4055-a3b5-d7059e52f043.jpg'),
-(12, 'Honolulu, Hawaii', 'Honolulu is the capital of Hawaii and a hub for beach lovers, surfers, and adventurers. Soak up the sun on Waikiki Beach, hike Diamond Head, and experience Hawaiian culture.', '2023-04-05', '2023-04-12', '3500.00', 'd45d1cff-35da-4c58-9a5d-88e7dff3ccab.jpg'),
+(12, 'Honolulu, Hawaii', 'Honolulu is the capital of Hawaii and a hub for beach lovers, surfers, and adventurers. Soak up the sun on Waikiki Beach, hike Diamond Head, and experience Hawaiian culture.', '2023-04-05', '2023-04-12', '3500.00', 'b9858b79-2f32-4773-aa35-98eebab2598e.jpg'),
 (13, 'Paris, France', 'Paris is the city of love, known for its iconic landmarks, world-class cuisine, and rich cultural heritage. Explore the Eiffel Tower, stroll along the Seine, and sample the local pastries.', '2023-08-10', '2023-08-17', '3200.00', 'd1ae6b0a-dcba-4992-a854-f43b265fe039.jpg'),
 (14, 'Amsterdam, Netherlands', 'Amsterdam is a charming city known for its vibrant culture, historic canals, and world-famous museums. Explore the Van Gogh Museum, take a bike tour, and sample the local cheese.', '2023-12-15', '2023-12-22', '2700.00', 'f3bba325-88bc-46ae-a189-60a3012a6a5b.jpg'),
 (15, 'Rio de Janeiro, Brazil', 'Rio de Janeiro is a lively city known for its stunning beaches, vibrant nightlife, and iconic landmarks. Relax on Copacabana Beach, visit Christ the Redeemer, and sample the local cuisine.', '2024-01-10', '2024-01-17', '2300.00', '71b35329-4e66-4460-ba8b-9718fefeef8a.jpg'),
-(16, 'Maui, Hawaii', 'Maui is an idyllic Hawaiian island with beautiful beaches, vibrant culture, and breathtaking natural beauty. Hike through lush jungles, watch the sunrise from the top of Haleakala, and learn about Hawaiian history and traditions.', '2023-07-15', '2023-07-22', '3000.00', 'dbc63667-ae0a-4494-95aa-eaa65d3cf690.jpg'),
+(16, 'Maui, Hawaii', 'Maui is an idyllic Hawaiian island with beautiful beaches, vibrant culture, and breathtaking natural beauty. Hike through lush jungles, watch the sunrise from the top of Haleakala, and learn about Hawaiian history and traditions.', '2023-07-15', '2023-07-22', '3000.00', '14618c0c-372e-4e05-aa5a-c3103efb98ce.jpg'),
 (17, 'Phuket, Thailand', 'Phuket is a tropical island in Thailand with stunning beaches, lush jungles, and rich culture. Snorkel in the Andaman Sea, explore ancient temples, and indulge in local cuisine.', '2023-08-01', '2023-08-01', '2500.00', '05c8df0c-ec8f-4c06-9760-b4ce639841e3.jpg'),
 (18, 'New York City, USA', 'New York City is a bustling metropolis with a rich cultural heritage, world-class museums, and iconic landmarks. Explore Central Park, visit the Metropolitan Museum of Art, and catch a Broadway show.', '2023-12-01', '2023-12-01', '2500.00', '974cf369-10d1-4c56-a036-ca55395664d5.jpg'),
 (19, 'Barcelona, Spain', 'Barcelona is a city of art, architecture, and history, with stunning buildings, museums, and beaches. Visit the Sagrada Familia, stroll along La Rambla, and relax on the Barceloneta Beach.', '2024-05-01', '2024-05-01', '2500.00', '5980d01f-afe1-49a7-824a-84d2a1753d6c.jpg');

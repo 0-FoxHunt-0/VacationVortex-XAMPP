@@ -10,3 +10,10 @@
     background-color: #FFFFFF;
     color: black;
 }
+
+.imagePreview > * {
+    width: fit-content;
+    height: fit-content;
+    max-width: 456.8px;
+    max-height: 456.8px;
+}

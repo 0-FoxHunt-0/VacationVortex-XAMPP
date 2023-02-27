@@ -31,7 +31,7 @@ function AdminVacationCard(props: VacationCardProps): JSX.Element {
             <CardActions sx={[{ position: "relative" }, { left: 10 }, { top: 70 }, { zIndex: 1 }]}>
                 <NavLink to={"/admin/edit/vacations/" + props.vacation.vacationId}>
                     <Button>
-                        <Fab color="default" aria-label="add" size='medium'>
+                        <Fab color="default" aria-label="edit" size='medium'>
                             <EditIcon />
                         </Fab>
                     </Button>
@@ -51,7 +51,7 @@ function AdminVacationCard(props: VacationCardProps): JSX.Element {
                     alt={props.vacation.destination}
                     height="220"
                     image={props.vacation.imageName}
-                    sx={[{ position: "relative" }, { zIndex: 0 }, { top: 0 }, { backgroundRepeat: "no-repeat" }]}
+                    sx={[{ position: "relative" , zIndex: 0, top: 0 , backgroundRepeat: "no-repeat", objectFit: "cover" }]}
                 />
                 <CardContent sx={{ height: "100%" }}>
                     <Typography variant="h5" component="div">

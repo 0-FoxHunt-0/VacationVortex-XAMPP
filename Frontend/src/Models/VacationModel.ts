@@ -20,7 +20,7 @@ class VacationModel {
   public static descriptionValidation: RegisterOptions = {
     required: { value: true, message: "Missing description!" },
     minLength: { value: 1, message: "Description must contain at least one char" },
-    maxLength: { value: 50, message: "Description can't exceed 50 chars" }
+    maxLength: { value: 1000, message: "Description can't exceed 1000 chars" }
   };
   public static startDateValidation: RegisterOptions = {
     required: { value: true, message: "Missing startDate!" },

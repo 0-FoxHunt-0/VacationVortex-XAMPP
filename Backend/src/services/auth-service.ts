@@ -7,8 +7,6 @@ import cyber from "../utils/cyber";
 import dal from "../utils/dal";
 
 async function register(user: UserModel): Promise<string> {
-  //   user.validateUser();
-
   // If email taken:
   if (await isEmailTaken(user.email))
     throw new ValidationError(`User ${user.email} already exists`);

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import UserModel from "../../../Models/UserModel";
 import authService from "../../../Services/AuthServices";
+import notify from "../../../Utils/Notify";
 import "./Register.css";
 
 function Register(): JSX.Element {
@@ -12,10 +13,10 @@ function Register(): JSX.Element {
     async function send(user: UserModel) {
         try {
             await authService.register(user);
-            alert("Welcome " + user.firstName)
+            notify.success("Welcome " + user.firstName)
             navigate("/")
         } catch (error: any) {
-            alert(error.message)
+            notify.error(error.message)
         }
     }
 

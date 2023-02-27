@@ -1,25 +1,65 @@
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
+import { vacationStore } from "../../../Redux/VacationState";
 import adminVacationsService from "../../../Services/AdminVacationsService";
+import authService from "../../../Services/AuthServices";
 import notify from "../../../Utils/Notify";
 import "./AddVacation.css";
 
 function AddVacation(): JSX.Element {
 
     const { register, handleSubmit, formState } = useForm<VacationModel>()
-
+    const [vacations, setVacations] = useState<VacationModel[]>([])
+    const [image, setImage] = useState<File>()
+    const [preview, setPreview] = useState<string>();
     const navigate = useNavigate()
-
     const minDate = new Date();
-    const nextMinDate = minDate.toISOString().split("T")[0]
+
+    useEffect(() => {
+
+        if (!sessionStorage.getItem("userToken") || !authService.isAdmin()) {
+            notify.error("You are not logged in or authorized")
+            navigate("/")
+            return;
+        }
+
+        setVacations(vacationStore.getState().vacations)
+
+        if (vacations.length === 0) {
+            adminVacationsService.getAllVacationsAdmin()
+                .then(vacations => { setVacations(vacations) })
+                .catch(err => { alert(err.msg) })
+        }
+
+        if (image) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result as string)
+            }
+            reader.readAsDataURL(image)
+        } else {
+            setPreview(null)
+        }
+
+    }, [image])
 
     async function send(vacation: VacationModel) {
+
+        if (!authService.isAdmin()) {
+            notify.error("You are not a admin")
+            navigate("/")
+            return;
+        }
+
         try {
             const startDate = new Date(vacation.startDate)
             const nextStartDate = startDate.toISOString().split("T")[0]
             const endDate = new Date(vacation.endDate)
             const nextEndDate = endDate.toISOString().split("T")[0]
+            const nextMinDate = minDate.toISOString().split("T")[0]
+
             if (nextStartDate < nextMinDate) {
                 notify.error("Vacation start date cannot go back in time!")
                 return;
@@ -73,8 +113,29 @@ function AddVacation(): JSX.Element {
                 <br />
 
                 <label>Image: </label>
-                <input type="file" className="form-control" accept="image/*" {...register("image", VacationModel.imageValidation)} />
+                <input
+                    type="file"
+                    className="form-control"
+                    accept="image/*"
+                    {...register("image", VacationModel.imageValidation)}
+                    onChange={(event) => {
+                        const file = event.target.files[0]
+                        if (file && file.type.substring(0, 5) === "image") {
+                            setImage(file)
+                        } else {
+                            setImage(null)
+                        }
+                    }}
+                />
                 <span className="Err">{formState.errors.image?.message}</span>
+                <br />
+
+                <span>Image preview:</span>
+                <div className="imagePreview">
+                    {preview &&
+                        <img src={preview} alt="Image Preview..." />
+                    }
+                </div>
                 <br />
 
                 <button type="submit" className="btn btn-primary">Add</button>

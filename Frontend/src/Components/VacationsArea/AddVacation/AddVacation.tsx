@@ -12,16 +12,20 @@ function AddVacation(): JSX.Element {
     const navigate = useNavigate()
 
     const minDate = new Date();
+    const nextMinDate = minDate.toISOString().split("T")[0]
 
     async function send(vacation: VacationModel) {
         try {
-
-            if (new Date(vacation.startDate).getDate() < minDate.getDate()) {
+            const startDate = new Date(vacation.startDate)
+            const nextStartDate = startDate.toISOString().split("T")[0]
+            const endDate = new Date(vacation.endDate)
+            const nextEndDate = endDate.toISOString().split("T")[0]
+            if (nextStartDate < nextMinDate) {
                 notify.error("Vacation start date cannot go back in time!")
                 return;
             }
 
-            else if (new Date(vacation.endDate).getDate() < new Date(vacation.startDate).getDate()) {
+            else if (nextEndDate < nextStartDate) {
                 notify.error("Vacation end date cannot go back in time!")
                 return;
             }

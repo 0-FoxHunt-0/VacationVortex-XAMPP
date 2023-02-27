@@ -13,10 +13,7 @@ class Interceptors {
             if (authService.isLoggedIn()) {
                 // Add authorization header containing the string "Bearer the-token"
                 request.headers.authorization = "Bearer " + authStore.getState().token
-            }
-
-            // console.log(request.headers.authorization);
-            
+            }            
 
             return request
 

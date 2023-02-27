@@ -125,7 +125,6 @@ function VacationList(): JSX.Element {
                 userVacationsService.vacationFiltering([])
                 setVacations([])
             }
-            console.log(vacationStore.getState().vacations)
             await userVacationsService.getAllVacationsUser()
                 .then(v => setVacations(v))
                 .catch(err => notify.error(err))
@@ -149,7 +148,6 @@ function VacationList(): JSX.Element {
                 userVacationsService.vacationFiltering([])
                 setVacations([])
             }
-            console.log(vacationStore.getState().vacations)
             await userVacationsService.getAllVacationsUser()
                 .then(v => setVacations(v))
                 .catch(err => notify.error(err))
@@ -173,7 +171,6 @@ function VacationList(): JSX.Element {
                 userVacationsService.vacationFiltering([])
                 setVacations([])
             }
-            console.log(vacationStore.getState().vacations)
             await userVacationsService.getAllVacationsUser()
                 .then(v => setVacations(v))
                 .catch(err => notify.error(err))

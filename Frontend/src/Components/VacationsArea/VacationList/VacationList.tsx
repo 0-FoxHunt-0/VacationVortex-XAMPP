@@ -65,8 +65,10 @@ function VacationList(): JSX.Element {
 
             }
 
-            authUnsubscribe()
-            vacationUnsubscribe()
+            return () => {
+                authUnsubscribe()
+                vacationUnsubscribe()
+            }
 
         } catch (error: any) {
             notify.error(error)

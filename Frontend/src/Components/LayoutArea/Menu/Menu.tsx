@@ -14,9 +14,13 @@ function Menu(): JSX.Element {
         setUser(authStore.getState().user)
 
         // Listen to AuthState changes:
-        authStore.subscribe(() => {
+        const authUnsubscribe = authStore.subscribe(() => {
             setUser(authStore.getState().user)
         })
+        
+        return () => {
+            authUnsubscribe()
+        }
 
     }, [])
 

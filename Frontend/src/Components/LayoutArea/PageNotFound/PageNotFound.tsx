@@ -1,7 +1,7 @@
-import "./PageNotFound.css";
-import pageNotFoundImage from "../../../Assets/Images/Errors/404-error-template.jpg"
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import pageNotFoundImage from "../../../Assets/Images/Errors/404-error-template.jpg";
+import "./PageNotFound.css";
 
 function PageNotFound(): JSX.Element {
 
@@ -9,7 +9,7 @@ function PageNotFound(): JSX.Element {
 
     useEffect(() => {
         const header = document.getElementById("mainHeader")
-        header.innerText = ""
+        header.innerText = "Page Not Found"
         setTimeout(() => {
             navigate("/")
         }, 3000)
@@ -17,7 +17,7 @@ function PageNotFound(): JSX.Element {
 
     return (
         <div className="PageNotFound">
-			<img src={pageNotFoundImage} alt="Page Not Found" />
+            <img src={pageNotFoundImage} alt="Page Not Found" />
         </div>
     );
 }

@@ -1,6 +1,5 @@
 import axios from "axios";
 import VacationModel from "../Models/VacationModel";
-import { authStore } from "../Redux/AuthState";
 import { VacationsActionType, vacationStore } from "../Redux/VacationState";
 import appConfig from "../Utils/AppConfig";
 import notify from "../Utils/Notify";
@@ -62,7 +61,6 @@ class UserVacationsService {
       type: VacationsActionType.FetchVacations,
       payload: filteredVacations,
     });
-    console.log(filteredVacations);
   }
 }
 

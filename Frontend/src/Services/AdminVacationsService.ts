@@ -14,7 +14,7 @@ class AdminVacationsService {
       const response = await axios.get<VacationModel[]>(
         appConfig.adminVacationsUrl
       );
-      vacations = response.data;      
+      vacations = response.data;
 
       // Send all vacations into redux global state which will call the Reducer
       vacationStore.dispatch({
@@ -22,7 +22,7 @@ class AdminVacationsService {
         payload: vacations,
       });
     }
-    
+
     // Return vacations
     return vacations;
   }

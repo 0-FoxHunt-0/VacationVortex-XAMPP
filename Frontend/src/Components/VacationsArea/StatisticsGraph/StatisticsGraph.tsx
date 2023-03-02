@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
@@ -7,7 +6,6 @@ import { vacationStore } from '../../../Redux/VacationState';
 import adminVacationsService from '../../../Services/AdminVacationsService';
 import authService from '../../../Services/AuthServices';
 import notify from '../../../Utils/Notify';
-import "./StatisticsGraph.css";
 
 interface Vacation {
     name: string;
@@ -35,6 +33,7 @@ function StatisticsGraph(): JSX.Element {
                 .catch(err => { alert(err.msg) })
         }
     }, [])
+    
     const destinations = Array.from(new Set(vacations.map(v => v.destination)));
     const destinationData: Vacation[] = destinations.map(destination => {
         const vacation = vacations.find(v => v.destination === destination);

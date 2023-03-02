@@ -1,5 +1,4 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode";
 import CredentialsModel from "../Models/CredentialsModel";
 import UserModel from "../Models/UserModel";
 import { AuthActionType, authStore } from "../Redux/AuthState";

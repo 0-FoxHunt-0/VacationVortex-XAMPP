@@ -3,9 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Button, Card, CardActions, CardContent, CardMedia, Fab, Typography } from "@mui/material";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
-
 import VacationModel from "../../../Models/VacationModel";
-import "./AdminVacationCard.css";
 
 interface VacationCardProps {
     vacation: VacationModel;
@@ -26,7 +24,7 @@ function AdminVacationCard(props: VacationCardProps): JSX.Element {
     }
 
     return (
-        <div className="VacationCard Box" id={props.vacation.vacationId.toString()}>
+        <div className="VacationCard Box">
 
             <CardActions sx={[{ position: "relative" }, { left: 10 }, { top: 70 }, { zIndex: 1 }]}>
                 <NavLink to={"/admin/edit/vacations/" + props.vacation.vacationId}>
@@ -44,14 +42,14 @@ function AdminVacationCard(props: VacationCardProps): JSX.Element {
                 </Button>
             </CardActions>
 
-            <Card className="card" id={props.vacation.vacationId.toString()} sx={[{ maxWidth: 500 }, { minWidth: 370 }, { minHeight: 480 }, { maxHeight: 480 }, { overflow: "hidden" }, { zIndex: 0 }]}>
+            <Card className="card" sx={[{ maxWidth: 500 }, { minWidth: 370 }, { minHeight: 480 }, { maxHeight: 480 }, { overflow: "hidden" }, { zIndex: 0 }]}>
 
                 <CardMedia
                     component="img"
                     alt={props.vacation.destination}
                     height="220"
                     image={props.vacation.imageName}
-                    sx={[{ position: "relative" , zIndex: 0, top: 0 , backgroundRepeat: "no-repeat", objectFit: "cover" }]}
+                    sx={[{ position: "relative", zIndex: 0, top: 0, backgroundRepeat: "no-repeat", objectFit: "cover" }]}
                 />
                 <CardContent sx={{ height: "100%" }}>
                     <Typography variant="h5" component="div">
@@ -69,7 +67,7 @@ function AdminVacationCard(props: VacationCardProps): JSX.Element {
                     </Typography>
                 </CardContent>
             </Card>
-            
+
         </div>
     );
 }

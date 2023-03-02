@@ -1,6 +1,7 @@
 import jwtDecode from "jwt-decode";
 import { createStore } from "redux";
 import UserModel from "../Models/UserModel";
+
 // 1. Global State
 export class AuthState {
   public token: string = null;
@@ -8,13 +9,12 @@ export class AuthState {
 
   // Load back the token from local storage if it exists:
   public constructor() {
-    this.token = sessionStorage.getItem("userToken")
+    this.token = sessionStorage.getItem("userToken");
     if (this.token) {
       const userContainer = jwtDecode<{ user: UserModel }>(this.token);
       this.user = userContainer.user;
     }
   }
-
 }
 
 // 2. Action Type
@@ -35,21 +35,21 @@ export function authReducer(
   currentState = new AuthState(),
   action: AuthAction
 ): AuthState {
-  const newState = { ...currentState };  
+  const newState = { ...currentState };
 
   switch (action.type) {
     case AuthActionType.Register: // Here the payload is the token (string)
     case AuthActionType.Login:
-      newState.token = action.payload;      
+      newState.token = action.payload;
       const userContainer = jwtDecode<{ user: UserModel }>(newState.token);
       newState.user = userContainer.user;
-      sessionStorage.setItem('userToken', newState.token)
+      sessionStorage.setItem("userToken", newState.token);
       break;
 
     case AuthActionType.Logout:
       newState.token = null;
       newState.user = null;
-      sessionStorage.removeItem('userToken');
+      sessionStorage.removeItem("userToken");
       break;
   }
 

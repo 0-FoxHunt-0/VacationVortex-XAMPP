@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import CredentialsModel from "../models/credentials-model";
 import UserModel from "../models/user-model";
 import authService from "../services/auth-service";
@@ -21,16 +21,16 @@ router.post(
 
 // POST http://localhost:4000/api/auth/login
 router.post(
-    "/auth/login",
-    async (request: Request, response: Response, next: NextFunction) => {
-      try {
-        const credentials = new CredentialsModel(request.body);
-        const token = await authService.login(credentials);
-        response.json(token);
-      } catch (err: any) {
-        next(err);
-      }
+  "/auth/login",
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const credentials = new CredentialsModel(request.body);
+      const token = await authService.login(credentials);
+      response.json(token);
+    } catch (err: any) {
+      next(err);
     }
-  );
+  }
+);
 
 export default router;

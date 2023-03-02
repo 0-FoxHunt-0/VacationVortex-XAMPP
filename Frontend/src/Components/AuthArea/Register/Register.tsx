@@ -16,14 +16,14 @@ function Register(): JSX.Element {
             notify.success("Welcome " + user.firstName)
             navigate("/")
         } catch (error: any) {
-            notify.error(error.message)
+            notify.error(error)
         }
     }
 
     return (
         <div className="Register Box">
 
-			<h2>Register</h2>
+            <h2>Register</h2>
 
             <form onSubmit={handleSubmit(send)}>
 
@@ -37,7 +37,7 @@ function Register(): JSX.Element {
 
 
                 <label>Email:</label>
-                <input className="form-control" type="text" {...register("email", UserModel.emailValidation)} />
+                <input className="form-control" type="email" {...register("email", UserModel.emailValidation)} />
                 <span className="Err">{formState.errors.email?.message}</span>
 
                 <label>Password:</label>

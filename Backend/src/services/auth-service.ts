@@ -7,9 +7,12 @@ import cyber from "../utils/cyber";
 import dal from "../utils/dal";
 
 async function register(user: UserModel): Promise<string> {
+
+  user.validateRegister()
+
   // If email taken:
   if (await isEmailTaken(user.email))
-    throw new ValidationError(`User ${user.email} already exists`);
+    throw new ValidationError(`Email: ${user.email} already exists`);
 
   // New user is assigned a user role:
   user.role = RoleModel.User;

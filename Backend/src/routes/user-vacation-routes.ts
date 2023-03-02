@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import verifyLoggedIn from "../middleware/verify-logged-in";
 import userVacationService from "../services/user-vacation-service";
 import cyber from "../utils/cyber";
@@ -12,9 +12,9 @@ userRouter.get(
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const user = cyber.getUserFromToken(request)
-      const vacations = await userVacationService.getAllVacations(user)
-      response.json(vacations)
+      const user = cyber.getUserFromToken(request);
+      const vacations = await userVacationService.getAllVacations(user);
+      response.json(vacations);
     } catch (err: any) {
       next(err);
     }
@@ -27,10 +27,10 @@ userRouter.post(
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const user = cyber.getUserFromToken(request)
+      const user = cyber.getUserFromToken(request);
       const vacationId = +request.params.vacationId;
-      await userVacationService.follow(user.userId, vacationId)
-      response.sendStatus(201)
+      await userVacationService.follow(user.userId, vacationId);
+      response.sendStatus(201);
     } catch (err: any) {
       next(err);
     }
@@ -43,10 +43,10 @@ userRouter.delete(
   verifyLoggedIn,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const user = cyber.getUserFromToken(request)
+      const user = cyber.getUserFromToken(request);
       const vacationId = +request.params.vacationId;
-      await userVacationService.unfollow(user.userId, vacationId)
-      response.sendStatus(204)
+      await userVacationService.unfollow(user.userId, vacationId);
+      response.sendStatus(204);
     } catch (err: any) {
       next(err);
     }
@@ -56,20 +56,6 @@ userRouter.delete(
 // GET http://localhost:4000/api/user/vacation/images/:imageName
 userRouter.get(
   "/user/vacation/images/:imageName",
-  async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const imageName = request.params.imageName;
-      const absolutePath = imageHandler.getAbsolutePath(imageName)
-      response.sendFile(absolutePath)
-    } catch (err: any) {
-      next(err);
-    }
-  }
-);
-
-// GET http://localhost:4000/api/admin/vacations
-userRouter.get(
-  "/user/vacations/images/:imageName",
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const imageName = request.params.imageName;

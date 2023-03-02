@@ -23,20 +23,20 @@ function Login(): JSX.Element {
 
     return (
         <div className="Login Box">
-			
+
             <h2>Login</h2>
 
             <form onSubmit={handleSubmit(send)}>
 
                 <label>Email:</label>
-                <input className="form-control" type="text" {...register("email", CredentialsModel.emailValidation)} />
+                <input className="form-control" type="email" {...register("email", CredentialsModel.emailValidation)} />
                 <span className="Err">{formState.errors.email?.message}</span>
-                {formState.errors.email && <br/>}
+                {formState.errors.email && <br />}
 
                 <label>Password:</label>
                 <input className="form-control" type="password" {...register("password", CredentialsModel.passwordValidation)} />
                 <span className="Err">{formState.errors.password?.message}</span>
-                {formState.errors.password && <><br/><br/></>}
+                {formState.errors.password && <><br /><br /></>}
 
                 <button className="btn btn-primary" type="submit">Login</button>
 

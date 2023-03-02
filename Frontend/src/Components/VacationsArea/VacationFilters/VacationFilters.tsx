@@ -1,16 +1,15 @@
 import { Checkbox, FormControlLabel, Typography } from "@mui/material";
-import "./VacationFilters.css";
 
 interface VacationFiltersProps {
-    setIsFollowingCheck: any
-    setInProgressCheck: any
-    setYetToStartCheck: any
-    isFollowingCheck: boolean
-    inProgressCheck: boolean
-    yetToStartCheck: boolean
-    filterIsFollowing: any
-    filterInProgress: any
-    filterYetToStart: any
+    setIsFollowingCheck: (value: boolean) => void;
+    setInProgressCheck: (value: boolean) => void;
+    setYetToStartCheck: (value: boolean) => void;
+    isFollowingCheck: boolean;
+    inProgressCheck: boolean;
+    yetToStartCheck: boolean;
+    filterIsFollowing: (value: boolean) => void;
+    filterInProgress: (value: boolean) => void;
+    filterYetToStart: (value: boolean) => void;
 }
 
 

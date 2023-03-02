@@ -8,7 +8,7 @@ import dal from "../utils/dal";
 import imageHandler from "../utils/image-handler";
 
 async function getAllVacationsForAdmin(): Promise<VacationModel[]> {
-  const sql = `SELECT V.*, CONCAT('${appConfig.adminImageAddress}', imageName) AS imageName, COUNT(F.userId) AS followerCount
+  const sql = `SELECT V.*, CONCAT('${appConfig.imageAddress}', imageName) AS imageName, COUNT(F.userId) AS followerCount
   FROM vacations AS V LEFT JOIN following AS F ON V.vacationId = F.vacationId GROUP BY V.vacationId ORDER BY startDate`;
   const vacations = await dal.execute(sql);
   return vacations;
@@ -24,12 +24,10 @@ async function getVacationById(id: number): Promise<VacationModel> {
 
 async function addVacation(vacation: VacationModel): Promise<VacationModel> {
   // Validate:
-  vacation.validatePost()
+  vacation.validatePost();
 
   // Save image to disk and get back its name
-  vacation.imageName = await imageHandler.saveImage(
-    vacation.image,
-  );
+  vacation.imageName = await imageHandler.saveImage(vacation.image);
 
   const sql = `INSERT INTO vacations 
   (destination, description, startDate, endDate, price, imageName) 
@@ -47,7 +45,7 @@ async function addVacation(vacation: VacationModel): Promise<VacationModel> {
   );
   vacation.vacationId = result.insertId;
 
-  vacation.imageName = appConfig.adminImageAddress + vacation.imageName
+  vacation.imageName = appConfig.imageAddress + vacation.imageName;
 
   // Delete image file from vacation object:
   delete vacation.image;
@@ -58,9 +56,11 @@ async function addVacation(vacation: VacationModel): Promise<VacationModel> {
 
 async function updateVacation(vacation: VacationModel): Promise<VacationModel> {
   // Validate:
-  vacation.validateUpdate()
+  vacation.validateUpdate();
 
-  vacation.imageName = await imageHandler.getImageUrlFromDB(vacation.vacationId);
+  vacation.imageName = await imageHandler.getImageUrlFromDB(
+    vacation.vacationId
+  );
 
   if (vacation.image) {
     vacation.imageName = await imageHandler.updateImage(
@@ -86,13 +86,23 @@ async function updateVacation(vacation: VacationModel): Promise<VacationModel> {
     `;
 
   // Execute query:
-  const result: OkPacket = await dal.execute(sql, vacation.destination, vacation.description, vacation.startDate, vacation.endDate, vacation.price, vacation.imageName, vacation.vacationId);
+  const result: OkPacket = await dal.execute(
+    sql,
+    vacation.destination,
+    vacation.description,
+    vacation.startDate,
+    vacation.endDate,
+    vacation.price,
+    vacation.imageName,
+    vacation.vacationId
+  );
 
   // If vacation does not exist:
-  if (result.affectedRows === 0) throw new ResourceNotFoundError(vacation.vacationId);
+  if (result.affectedRows === 0)
+    throw new ResourceNotFoundError(vacation.vacationId);
 
   // Return image url to Frontend
-  vacation.imageName = appConfig.adminImageAddress + vacation.imageName
+  vacation.imageName = appConfig.imageAddress + vacation.imageName;
 
   // Delete image file from vacation object:
   delete vacation.image;

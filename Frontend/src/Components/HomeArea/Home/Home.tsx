@@ -6,7 +6,7 @@ function Home(): JSX.Element {
     useEffect(() => {
         const header = document.getElementById("mainHeader")
         header.innerText = "Welcome to VacationVortex"
-    })
+    }, [])
 
     return (
         <div className="Home">

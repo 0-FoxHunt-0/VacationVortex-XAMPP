@@ -42,7 +42,7 @@ class VacationModel {
     endDate: Joi.date().required(),
     price: Joi.number().required().min(0).max(1000000000),
     image: Joi.object().optional(),
-    imageName: Joi.string().forbidden()
+    imageName: Joi.string().forbidden(),
   });
 
   public validatePost(): void {

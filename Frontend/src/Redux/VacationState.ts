@@ -2,13 +2,11 @@ import { createStore } from "redux";
 import VacationModel from "../Models/VacationModel";
 
 // 1. App State - Application Level State:
-
 export class VacationsState {
   public vacations: VacationModel[] = [];
 }
 
 // 2. Action Type - list of actions needed on the data:
-
 export enum VacationsActionType {
   FetchVacations = "FetchVacations",
   AddVacation = "AddVacation",
@@ -20,14 +18,12 @@ export enum VacationsActionType {
 }
 
 // 3. Action - a single object describing single operation on the data:
-
 export interface VacationsAction {
-  type: VacationsActionType; // What do we need to do?
-  payload: any; // What data type do we need?
+  type: VacationsActionType;
+  payload: any;
 }
 
 // 4. Reducer - function performing the needed actions:
-
 export function vacationsReducer(
   currentState = new VacationsState(),
   action: VacationsAction

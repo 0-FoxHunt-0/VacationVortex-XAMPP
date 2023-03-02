@@ -6,7 +6,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Fab from '@mui/material/Fab';
 import Typography from '@mui/material/Typography';
 import moment from 'moment';
-
 import VacationModel from "../../../Models/VacationModel";
 import notify from "../../../Utils/Notify";
 import "./UserVacationCard.css";
@@ -50,7 +49,7 @@ function UserVacationCard(props: VacationCardProps): JSX.Element {
     }
 
     return (
-        <div className="UserVacationCard VacationCard Box" id={props.vacation.vacationId.toString()}>
+        <div className="UserVacationCard VacationCard Box">
             <CardActions sx={[{ position: "relative" }, { left: 10 }, { top: 70 }, { zIndex: 1 }]}>
                 {
                     isFollowing() === true ?
@@ -63,7 +62,7 @@ function UserVacationCard(props: VacationCardProps): JSX.Element {
                 }
 
             </CardActions>
-            <Card id={props.vacation.vacationId.toString()} className='card' sx={[{ maxWidth: 500, minWidth: 350, minHeight: 480, maxHeight: 480}]}>
+            <Card className='card' sx={[{ maxWidth: 500, minWidth: 350, minHeight: 480, maxHeight: 480 }]}>
                 <CardMedia
                     component="img"
                     alt={props.vacation.destination}

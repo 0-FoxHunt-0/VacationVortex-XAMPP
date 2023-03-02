@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import appConfig from "../../../Utils/AppConfig";
-import "./CsvDownload.css";
 
 function CsvDownload(): JSX.Element {
-
+    
     const [isLoading, setIsLoading] = useState(false);
 
     const handleDownload = async () => {

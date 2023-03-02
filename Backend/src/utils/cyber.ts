@@ -1,9 +1,9 @@
-import UserModel from "../models/user-model";
-import jwt, { JsonWebTokenError } from "jsonwebtoken";
-import { Request, Response } from "express";
-import { AuthenticationError } from "../models/client-errors";
 import crypto from "crypto";
+import { Request } from "express";
+import jwt, { JsonWebTokenError } from "jsonwebtoken";
+import { AuthenticationError } from "../models/client-errors";
 import RoleModel from "../models/role-model";
+import UserModel from "../models/user-model";
 
 const secretKey = "vacation-handler";
 
@@ -60,7 +60,7 @@ function verifyToken(request: Request): Promise<boolean> {
 
 async function verifyAdmin(request: Request): Promise<boolean> {
   await verifyToken(request);
-  const user = getUserFromToken(request)  
+  const user = getUserFromToken(request);
   return user.role === RoleModel.Admin;
 }
 
@@ -72,12 +72,8 @@ function getUserFromToken(request: Request): UserModel {
 }
 
 // Hash password:
-// SHA - Secure Hashing Algorithm
-// HMAC - Hash based Message Authentication Code
 function hashPassword(plainText: string): string {
-  // Hashing without SALT:
-  // const hashedPassword = crypto.createHash("sha512").update(plainText).digest("hex");
-
+  
   // Hashing with SALT:
   const salt = "MakeThingsGoRight";
   const hashedPassword = crypto

@@ -1,5 +1,3 @@
-import "./VacationPagination.css";
-
 import Pagination from '@mui/material/Pagination';
 
 interface VacationPaginationProps {

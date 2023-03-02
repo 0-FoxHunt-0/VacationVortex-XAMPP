@@ -14,7 +14,6 @@ import AdminVacationCard from "../AdminVacationCard/AdminVacationCard";
 import UserVacationCard from "../UserVacationCard/UserVacationCard";
 import VacationFilters from "../VacationFilters/VacationFilters";
 import VacationPagination from "../VacationPagination/VacationPagination";
-import "./VacationList.css";
 
 function VacationList(): JSX.Element {
 
@@ -41,32 +40,38 @@ function VacationList(): JSX.Element {
 
             const header = document.getElementById("mainHeader")
             header.innerText = "Vacation Listing"
-    
-            authStore.subscribe(() => {
+
+            const authUnsubscribe = authStore.subscribe(() => {
                 const authState = authStore.getState().user
                 const duppedAuth = { ...authState }
                 setUser(duppedAuth)
             })
-    
-            vacationStore.subscribe(() => {
+
+            const vacationUnsubscribe = vacationStore.subscribe(() => {
                 const vacationState = vacationStore.getState().vacations;
                 const duppedVacations = [...vacationState]
                 setVacations(duppedVacations)
             })
-    
+
             {
                 authService.isAdmin() ?
                     adminVacationsService.getAllVacationsAdmin()
                         .then(vacations => { setVacations(vacations) })
                         .catch(err => { alert(err.msg) }) :
-    
+
                     userVacationsService.getAllVacationsUser()
                         .then(vacations => { setVacations(vacations) })
                         .catch(err => { alert(err.msg) })
+
             }
+
+            authUnsubscribe()
+            vacationUnsubscribe()
+
         } catch (error: any) {
             notify.error(error)
         }
+
 
     }, [])
 
@@ -77,7 +82,6 @@ function VacationList(): JSX.Element {
 
     async function deleteMe(vacationId: number) {
         try {
-
             if (!window.confirm('Are you sure you want to delete this vacation? \nThis action is irreversible!')) return;
 
             await adminVacationsService.deleteVacation(vacationId);
@@ -94,10 +98,8 @@ function VacationList(): JSX.Element {
     }
 
     // Following actions
-
     function isFollowing(vacationId: number): boolean {
         let vacation = vacations.find(v => v.vacationId === vacationId)
-
         if (vacation.isFollowing === 1) return true;
         else return false;
     }
@@ -119,7 +121,6 @@ function VacationList(): JSX.Element {
     }
 
     // Filtering functions
-
     async function filterIsFollowing(currentState: boolean) {
         if (currentState === true) {
             setTempIsFollowingFilterState(vacations)
@@ -142,6 +143,7 @@ function VacationList(): JSX.Element {
                 .catch(err => notify.error(err))
         }
     }
+
     async function filterInProgress(currentState: boolean) {
         const currentDate = new Date()
         if (currentState === true) {
@@ -165,6 +167,7 @@ function VacationList(): JSX.Element {
                 .catch(err => notify.error(err))
         }
     }
+
     async function filterYetToStart(currentState: boolean) {
         const currentDate = new Date()
         if (currentState === true) {

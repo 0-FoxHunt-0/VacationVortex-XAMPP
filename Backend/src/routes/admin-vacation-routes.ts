@@ -1,11 +1,9 @@
-import { createObjectCsvWriter } from "csv-writer";
-import express, { Request, Response, NextFunction } from "express";
-import path, { dirname } from "path";
+import express, { NextFunction, Request, Response } from "express";
+import path from "path";
 import verifyAdmin from "../middleware/verify-admin";
 import verifyLoggedIn from "../middleware/verify-logged-in";
 import VacationModel from "../models/vacation-model";
 import adminVacationService from "../services/admin-vacation-service";
-import dal from "../utils/dal";
 import imageHandler from "../utils/image-handler";
 
 const adminRouter = express.Router(); // Capital R
@@ -16,7 +14,7 @@ adminRouter.get(
   verifyAdmin,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const vacations = await adminVacationService.getAllVacationsForAdmin();      
+      const vacations = await adminVacationService.getAllVacationsForAdmin();
       response.json(vacations);
     } catch (err: any) {
       next(err);
@@ -26,7 +24,7 @@ adminRouter.get(
 
 // GET http://localhost:4000/api/admin/vacations
 adminRouter.get(
-  "/admin/vacations/images/:imageName",
+  "/vacations/images/:imageName",
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       const imageName = request.params.imageName;
@@ -76,7 +74,9 @@ adminRouter.put(
       request.body.vacationId = +request.params.id;
       request.body.image = request.files?.image;
       const vacation = new VacationModel(request.body);
-      const updatedVacation = await adminVacationService.updateVacation(vacation);
+      const updatedVacation = await adminVacationService.updateVacation(
+        vacation
+      );
       response.json(updatedVacation);
     } catch (err: any) {
       next(err);
@@ -105,7 +105,7 @@ adminRouter.get(
   verifyAdmin,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
-      adminVacationService.vacationStatisticsCSV()
+      adminVacationService.vacationStatisticsCSV();
       response.download(path.resolve(__dirname, "../assets/logs/CSVData.csv"));
       response.attachment(
         path.resolve(__dirname, "../assets/logs/CSVData.csv")
